@@ -15,12 +15,11 @@ function App() {
         <Rowpost title="Comedy Movies" url={comedy}isSmall />
         <Rowpost title="Documentaries" url={documentaries} isSmall />
         <Rowpost title="Romance Movies" url={romance} isSmall />
-
-
-
-
-
       </div>
 }
 
 export default App;
+
+
+
+

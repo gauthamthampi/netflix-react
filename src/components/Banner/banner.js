@@ -4,12 +4,22 @@ import axios from '../../axios'
 import { baseURL,api_key,imageURL } from '../../constants/constant'
 function Banner() {
   const [movie,setMovie] = useState("")
+  
   useEffect(() => {
-   axios.get(`https://api.themoviedb.org/3/trending/all/week?api_key=${api_key}&language=en-US`)
-   .then((response)=>{
-    setMovie(response.data.results[7])
-   })
-  }, [])
+    const getRandomMovieIndex = () => {
+      return Math.floor(Math.random() * 12); // Generate a random number between 0 and 11
+    };
+
+    axios
+      .get(`https://api.themoviedb.org/3/trending/all/week?api_key=${api_key}&language=en-US`)
+      .then((response) => {
+        const randomIndex = getRandomMovieIndex();
+        setMovie(response.data.results[randomIndex]);
+      })
+      .catch((error) => {
+        console.error('Error fetching movie:', error);
+      });
+  }, []);
   
   return (
     <div style={{backgroundImage:`url(${imageURL}/${movie.backdrop_path})`}} className='banner'>
